@@ -3,13 +3,12 @@ import { useState, useEffect } from 'react';
 import { Switch, Route, NavLink, Redirect } from 'react-router-dom';
 
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 function App() {
-  // const herokuURL = "https://book-app-heroku-000.herokuapp.com";
   const localURL = "http://localhost:3000";
 
   const [user, setUser] = useState(null);
-  const [ username, setUsername ] = useState("");
 
   useEffect(() => {
     console.log("inside useEffect hook")
@@ -23,21 +22,8 @@ function App() {
 
   console.log("this renders");
 
-  function handleLogin(e) {
-    e.preventDefault();
-    const configObj = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ username })
-    };
-    fetch(`${localURL}/login`, configObj)
-      .then(r => r.json())
-      .then(userData => {
-        console.log(userData);
-        setUser(userData);
-      });
+  function handleLogin(userData) {
+    setUser(userData);
   }
 
   return (
@@ -49,7 +35,10 @@ function App() {
 
       <Switch>
         <Route path="/login">
-          <Login onLogin={handleLogin} setUsername={setUsername} username={username} />
+          <Login onLogin={handleLogin} />
+        </Route>
+        <Route path="/signup">
+          <Signup onLogin={handleLogin} />
         </Route>
       </Switch>
       
