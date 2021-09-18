@@ -22,6 +22,7 @@ function Login({ onLogin }) {
       .then(userData => {
         console.log(userData);
         onLogin(userData);
+        setUsername("");
         history.push("/me");
       });
   }

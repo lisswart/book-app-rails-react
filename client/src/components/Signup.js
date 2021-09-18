@@ -1,11 +1,13 @@
 
 import { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Signup({ onLogin }) {
   const localURL = "http://localhost:3000";
 
   const [username, setUsername] = useState("");
+
+  const history = useHistory();
 
   function handleSignup(e) {
     e.preventDefault();
@@ -22,6 +24,7 @@ function Signup({ onLogin }) {
         console.log(userData);
         onLogin(userData);
         setUsername("");
+        history.push("/me")
       });
   }
 
