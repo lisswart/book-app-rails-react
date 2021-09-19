@@ -26,8 +26,8 @@
 puts "seeding book_users..."
 
 75.times do BookUser.create!(
-  book_id: rand(1..50),
-  user_id: rand(1..6),
+  book_id: rand(1..00),
+  user_id: rand(1..10),
   description: Faker::Lorem.paragraph(sentence_count: 20),
   read_status: ["Not Begun", "In Progress", "Completed", "Abandoned"].sample,
   is_notes_added: false
