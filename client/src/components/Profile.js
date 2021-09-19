@@ -1,8 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import BooksPanel from './BooksPanel';
 
 function Profile({ user, setUser }) {
+
+  const history = useHistory();
 
   function handleLogout() {
     console.log("inside handleLogout, before DELETE request, user: ", user);
@@ -12,6 +15,7 @@ function Profile({ user, setUser }) {
       .then(() => {
         setUser(null);
         console.log("inside first and only .then after user is set to null, user: ", user);
+        history.push('/me');
       });
   }
 
@@ -22,7 +26,7 @@ function Profile({ user, setUser }) {
           <p>{user.firstname} {user.lastname}</p>
           <p>{user.username}</p>
           <p>{user.email}</p>
-          <p>{user.password_digest}</p>
+          <br />
           <button onClick={handleLogout}>Logout</button>
           <BooksPanel user={user} />
         </main>

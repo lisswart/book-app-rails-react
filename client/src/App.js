@@ -39,8 +39,8 @@ function App() {
   return (
     <div className="app">
       <nav className="nav">
-        <NavLink to="/login" style={{color: "gold"}}>Login</NavLink>
-        <NavLink to="/signup" style={{color: "gold"}}>Signup</NavLink>
+        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/signup">Signup</NavLink>
       </nav>
 
       <Switch>

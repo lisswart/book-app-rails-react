@@ -12,9 +12,9 @@ function BooksPanel({ user }) {
   })
 
   return (
-    <div>
+    <ul>
       {displayBooks}
-    </div>
+    </ul>
   );
 }
 

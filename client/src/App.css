@@ -3,3 +3,11 @@ nav.nav {
   justify-content: space-evenly;
 }
 
+nav.nav a {
+  color: gold;
+}
+
+main {
+  margin: 2rem;
+  padding: 2rem;
+}

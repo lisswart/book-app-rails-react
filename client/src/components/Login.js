@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function Login({ onLogin }) {
-  const localURL = "http://localhost:3000";
+  // const localURL = "http://localhost:3000";
   
   const [ username, setUsername ] = useState("");
 
@@ -18,7 +18,7 @@ function Login({ onLogin }) {
       },
       body: JSON.stringify({ username })
     };
-    fetch(`${localURL}/login`, configObj)
+    fetch(`/login`, configObj)
       .then(r => {
         if (r.status !== 200 || r.status !== 201) {
           r.json().then(error => {

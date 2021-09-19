@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(session[:user_id])
+    book_user = BookUser.find_by(user_id: user.id)
     render json: user, include: :books
   end
 

@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/index.css","webpack://src/App.css"],"names":[],"mappings":"AAAA,KACE,qBAAuB,CACvB,aACF,CCHA,QACE,YAAa,CACb,4BACF","file":"main.546bfd38.chunk.css","sourcesContent":["body {\n  background-color: black;\n  color: cornsilk;\n}\n","nav.nav {\n  display: flex;\n  justify-content: space-evenly;\n}\n\n"]}
