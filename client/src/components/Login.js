@@ -18,7 +18,7 @@ function Login({ onLogin }) {
       },
       body: JSON.stringify({ username })
     };
-    fetch(`/login`, configObj)
+    fetch(`/api/login`, configObj)
       .then(r => {
         if (r.status !== 200 || r.status !== 201) {
           r.json().then(error => {

@@ -18,7 +18,7 @@ function Signup({ onLogin }) {
       },
       body: JSON.stringify({"username": username})
     };
-    fetch(`${localURL}/signup`, configObj)
+    fetch(`/api/signup`, configObj)
       .then(r => r.json())
       .then(userData => {
         console.log(userData);

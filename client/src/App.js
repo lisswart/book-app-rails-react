@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     console.log("inside first line of useEffect hook")
-    fetch(`/me`)
+    fetch(`/api/me`)
       .then(r => {
         r.json().then(userData => {
           console.log("inside second .then in useEffect hook, the response object: ", userData);
