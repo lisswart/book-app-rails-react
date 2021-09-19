@@ -19,13 +19,20 @@ function Login({ onLogin }) {
       body: JSON.stringify({ username })
     };
     fetch(`${localURL}/login`, configObj)
-      .then(r => r.json())
-      .then(userData => {
-        console.log(userData);
-        onLogin(userData);
-        setUsername("");
-        history.push("/me");
-      });
+      .then(r => {
+        if (r.status !== 200 || r.status !== 201) {
+          r.json().then(error => {
+            console.log(error);
+          });
+        } else {
+          r.json().then(userData => {
+            console.log("inside login component", userData);
+            onLogin(userData);
+            setUsername("");
+            history.push("/me");
+          });
+        }
+      });      
   }
 
   return (

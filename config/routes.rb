@@ -6,5 +6,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  post '/books', to: 'books#create'
+  get '/books', to: 'books#index'
+  get '/books/:id', to: 'books#show'
+  patch '/books/:id', to: 'books#update'
+  delete '/books/:id', to: 'books#destroy'
+
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

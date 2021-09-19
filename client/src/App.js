@@ -2,21 +2,31 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Switch, Route, NavLink, Redirect } from 'react-router-dom';
 
+import './App.css';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Profile from './components/Profile';
 
 function App() {
-  const localURL = "http://localhost:3000";
 
   const [user, setUser] = useState(null);
 
+  console.log("on document load", user);
+
   useEffect(() => {
-    console.log("inside useEffect hook")
-    fetch(`${localURL}/me`)
-      .then(r => r.json())
-      .then(userData => {
-        console.log(userData);
-        setUser(userData);
+    console.log("inside first line of useEffect hook")
+    fetch(`/me`)
+      .then(r => {
+        r.json().then(userData => {
+          console.log("inside second .then in useEffect hook, the response object: ", userData);
+          console.log("state of user obj in react: ", user);
+          if (userData.status === 404)
+            setUser(null);
+          else {
+            setUser(userData);
+            console.log("state of user object in react", user);
+          }
+        });
       });
   }, []);
 
@@ -27,26 +37,35 @@ function App() {
   }
 
   return (
-    <div>
-      <nav style={{display: 'flex', justifyContent: 'space-evenly'}}>
+    <div className="app">
+      <nav className="nav">
         <NavLink to="/login" style={{color: "gold"}}>Login</NavLink>
         <NavLink to="/signup" style={{color: "gold"}}>Signup</NavLink>
       </nav>
 
       <Switch>
         <Route path="/login">
-          <Login onLogin={handleLogin} />
+          {
+            user
+            ? <Redirect to="/profile"></Redirect>
+            : <Login onLogin={handleLogin} />
+          }
         </Route>
         <Route path="/signup">
-          <Signup onLogin={handleLogin} />
+          {
+            user
+            ? <Redirect to="/profile"></Redirect>
+            : <Signup onLogin={handleLogin} />
+          }
+        </Route>
+        <Route path="/profile">
+          {
+            user
+            ? <Profile user={user} setUser={setUser} />
+            : <Redirect to="/login"></Redirect>
+          }
         </Route>
       </Switch>
-      
-      {
-        user
-        ? <p>{user.username}</p>
-        : <Redirect to="/login"></Redirect>
-      }
     </div>
   );
 }
